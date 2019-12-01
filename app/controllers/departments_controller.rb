@@ -1,11 +1,12 @@
 class DepartmentsController < ApplicationController
+    before_action :set_department, only: [:show, :update, :delete]
+
     def index
         @departments = Department.all
         render json: {data: @departments}
     end
     
     def show
-        @department = Department.find(params[:id])
         render json:  {data: @department}
     end
 
@@ -19,18 +20,20 @@ class DepartmentsController < ApplicationController
     end
 
     def update
-        @department = Department.find(params[:id])
         @department.update(department_params)
         render json:  {data: @department}
     end
 
     def destroy
-        @department = Department.find(params[:id])
         @department.destroy
         render json: {data: "deleted"}
     end
 
     private 
+
+    def set_department
+        @department = Department.find(params[:id])
+    end
     def department_params
         params.permit(:department_name)
     end
