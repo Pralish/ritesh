@@ -34,7 +34,7 @@ module Ritesh
     config.middleware.insert_before 0, Rack::Cors do
       allow do
          origins '*'
-         resource '*', :headers => :any, :methods => [:get, :post, :options]
+         resource '*', :headers => :any, :methods => [:get, :post, :options,:destroy, :delete]
        end
     end
     # Skip views, helpers and assets when generating a new resource.
